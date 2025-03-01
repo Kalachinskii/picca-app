@@ -1,17 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { MouseEvent, useState } from 'react'
 import Button from './components/button/Button'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // типизируем
+  const [counter, setCounter] = useState<number>(0)
+
+  // MouseEvent - в реакте события синтетические
+  // т.е. не настоящие из за виртуального дом
+  // вследствии чего их надо импортировать с реакта
+  const addCouner = (e: MouseEvent) => {
+    console.log(e);
+  }
 
   return (
     <>
-      <h1>App</h1>
       {/* обезательно исполнение интерфейса - children = Кнопка*/}
-      <Button onClick={() => console.log('клик')}>Кнопка</Button>
+      {/* small - по дефолту - можно не передавать */}
+      <Button onClick={addCouner}>Кнопка</Button>
+      {/* appearence - принемает только либо big | small */}
+      <Button appearence='big' onClick={addCouner}>Кнопка</Button>
+
     </>
   )
 }
