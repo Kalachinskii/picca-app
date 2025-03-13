@@ -1,5 +1,6 @@
 import { MouseEvent, useState } from 'react'
 import Button from './components/button/Button'
+import Input from './components/Input/Input';
 
 function App() {
   // типизируем
@@ -19,7 +20,7 @@ function App() {
       <Button onClick={addCouner}>Кнопка</Button>
       {/* appearence - принемает только либо big | small */}
       <Button appearence='big' onClick={addCouner}>Кнопка</Button>
-
+      <Input placeholder='Email'/>
     </>
   )
 }
