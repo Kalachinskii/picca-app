@@ -61,7 +61,7 @@ export function Layout() {
                 </Button>
             </div>
 
-            <div>
+            <div className={styles.content}>
                 {/* область контента дочерних роутев */}
                 <Outlet />
             </div>

@@ -66,3 +66,9 @@
     line-height: normal;
     color: #9ea1b1;
 }
+
+/* CONTENT */
+.content {
+    padding: 60px;
+    width: 100%;
+}
