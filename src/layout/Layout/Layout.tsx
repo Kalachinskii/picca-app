@@ -1,8 +1,19 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import styles from "./Layout.module.css";
 import Button from "../../components/button/Button";
+import { useEffect } from "react";
+import cn from "classnames";
 
 export function Layout() {
+    // показывает где мы находимся
+    const location = useLocation();
+
+    useEffect(() => {
+        console.log(location);
+        // {pathname: '/', search: '', hash: '', state: null, key: '4nl451ry'}
+        // {pathname: '/cart', search: '', hash: '', state: null, key: 'thhuh10x'}
+    }, [location]);
+
     return (
         <div className={styles.layout}>
             <div className={styles.sidebar}>
@@ -21,7 +32,12 @@ export function Layout() {
                     {/* в непровайдера использовать Link нельзя */}
                     {/* по сути говорит что это не внешний переход */}
                     {/* потому и не перезагружает страницу в отл от <а />*/}
-                    <Link to="/" className={styles.link}>
+                    <Link
+                        to="/"
+                        className={cn(styles.link, {
+                            [styles.active]: location.pathname == "/",
+                        })}
+                    >
                         <img src="/menu-icon.svg" alt="Иконка меню" />
                         Меню
                     </Link>
