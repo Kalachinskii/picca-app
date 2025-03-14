@@ -7,6 +7,7 @@ import { Menu } from "./pages/Menu/Menu";
 import { Cart } from "./pages/Cart/Cart";
 import { Error } from "./pages/Error/Error";
 import { Layout } from "./layout/Layout/Layout.tsx";
+import { Product } from "./pages/Product/Product.tsx";
 
 // не загрезняем JSX
 const router = createBrowserRouter([
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart />,
+            },
+            {
+                // :id - специальный индетификатор
+                path: "/product/:id",
+                element: <Product />,
             },
         ],
     },
