@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import styles from "./Layout.module.css";
 import Button from "../../components/button/Button";
 import { useEffect } from "react";
@@ -32,19 +32,28 @@ export function Layout() {
                     {/* в непровайдера использовать Link нельзя */}
                     {/* по сути говорит что это не внешний переход */}
                     {/* потому и не перезагружает страницу в отл от <а />*/}
-                    <Link
+                    <NavLink
                         to="/"
-                        className={cn(styles.link, {
-                            [styles.active]: location.pathname == "/",
-                        })}
+                        // isPending - неактивен
+                        // isActive - активен
+                        className={({ isActive }) =>
+                            cn(styles.link, {
+                                [styles.active]: isActive,
+                            })
+                        }
                     >
                         <img src="/menu-icon.svg" alt="Иконка меню" />
                         Меню
-                    </Link>
-                    <Link to="/cart" className={styles.link}>
+                    </NavLink>
+                    <NavLink
+                        to="/cart"
+                        className={({ isActive }) =>
+                            cn(styles.link, { [styles.active]: isActive })
+                        }
+                    >
                         <img src="/cart-icon.svg" alt="Иконка корзины" />
                         Корзина
-                    </Link>
+                    </NavLink>
                 </div>
                 <Button className={styles.exit}>
                     <img src="/exit-icon.svg" alt="иконка выхода" />
