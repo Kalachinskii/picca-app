@@ -8,6 +8,8 @@ import { Cart } from "./pages/Cart/Cart";
 import { Error } from "./pages/Error/Error";
 import { Layout } from "./layout/Layout/Layout.tsx";
 import { Product } from "./pages/Product/Product.tsx";
+import axios from "axios";
+import { PREFIX } from "./helpers/API.ts";
 
 // не загрезняем JSX
 const router = createBrowserRouter([
@@ -27,6 +29,15 @@ const router = createBrowserRouter([
                 // :id - специальный индетификатор
                 path: "/product/:id",
                 element: <Product />,
+                // может быть асинхронной
+                // https://67c45d8cc4649b9551b361e2.mockapi.io/menu/?id=1
+                loader: async ({ params }) => {
+                    const { data } = await axios.get(
+                        `${PREFIX}/menu/?id=${params.id}`
+                    );
+                    // mockapi.io - возвращает массивом [{...}] = избавляемся от []
+                    return data[0];
+                },
             },
         ],
     },

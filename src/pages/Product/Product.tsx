@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
+import { IProduct } from "../Menu/product.interface";
 
 export function Product() {
     // достаём из url всё что после product/
-    const { id } = useParams();
+    // const { id } = useParams();
+    const data = useLoaderData() as IProduct;
 
-    return <>Продукт - {id}</>;
+    return <>Продукт - {data.name}</>;
 }
