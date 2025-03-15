@@ -9,7 +9,8 @@ import axios, { AxiosError } from "axios";
 import { MenuList } from "./MenuList/MenuList";
 import { IProduct } from "./product.interface";
 
-export function Menu() {
+// export function Menu() { - переделан в ленивую
+function Menu() {
     const [products, setProducts] = useState<IProduct[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | undefined>();
@@ -64,3 +65,5 @@ export function Menu() {
         </>
     );
 }
+// для ленивой загрузки
+export default Menu;
