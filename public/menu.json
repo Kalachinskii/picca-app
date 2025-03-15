@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Наслождение",
+        "price": 300,
+        "ingredients": ["салями", "руккола", "помидоры", "оливки"],
+        "image": "htps://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/food/food1.png",
+        "reating": 4.7
+    },
+    {
+        "id": 2,
+        "name": "Такос",
+        "price": 280,
+        "ingredients": ["острый перец", "лепёшка", "фарш"],
+        "image": "htps://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/food/food2.png",
+        "reating": 4.4
+    },
+    {
+        "id": 3,
+        "name": "Аццки острая",
+        "price": 320,
+        "ingredients": ["салями", "руккола", "помидоры", "оливки"],
+        "image": "htps://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/food/food3.png",
+        "reating": 4.8
+    },
+    {
+        "id": 4,
+        "name": "Жаркое с сыром",
+        "price": 290,
+        "ingredients": ["картофель", "сыр", "перец", "фарш"],
+        "image": "htps://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/food/food4.png",
+        "reating": 4.9
+    },
+    {
+        "id": 5,
+        "name": "Цезарь с курицей",
+        "price": 310,
+        "ingredients": ["курица", "сыр", "помидоры", "соус Цезарь"],
+        "image": "htps://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/food/food5.png",
+        "reating": 4.4
+    },
+    {
+        "id": 6,
+        "name": "Зелёный салат",
+        "price": 300,
+        "ingredients": ["огурец", "орехи", "перец"],
+        "image": "htps://cdn-bucket.hb.ru-msk.vkcs.cloud/purple-images/demo/food/food6.png",
+        "reating": 4.5
+    }
+]
