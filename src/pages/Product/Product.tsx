@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { IProduct } from "../Menu/product.interface";
 
 export function Product() {

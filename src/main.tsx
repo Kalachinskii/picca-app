@@ -29,6 +29,8 @@ const router = createBrowserRouter([
                 // :id - специальный индетификатор
                 path: "/product/:id",
                 element: <Product />,
+                // если страница не загрузиться то подменит
+                errorElement: <>Ошибка</>,
                 // может быть асинхронной
                 // https://67c45d8cc4649b9551b361e2.mockapi.io/menu/?id=1
                 loader: async ({ params }) => {
