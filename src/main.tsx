@@ -11,6 +11,9 @@ import { Layout } from "./layout/Layout/Layout.tsx";
 import { Product } from "./pages/Product/Product.tsx";
 import axios from "axios";
 import { PREFIX } from "./helpers/API.ts";
+import { AuthLayout } from "./layout/Layout/Auth/AuthLayout.tsx";
+import { Login } from "./pages/Login/Login.tsx";
+import { Register } from "./pages/Register/Register.tsx";
 
 // ЛИНИВАЯ ЗАГРУЗКА
 // при build проекте снижает затратность памяти (меньше вес)
@@ -73,6 +76,23 @@ const router = createBrowserRouter([
                     // mockapi.io - возвращает массивом [{...}] = избавляемся от []
                     // return data[0];
                 },
+            },
+        ],
+    },
+    {
+        path: "/auth",
+        // отдельный лаяут на регистрацию отделенный от основной страницы
+        element: <AuthLayout />,
+        // и 2 страницы
+        // вся вёрстка детей element: <></>, подставяться в <Outlet />
+        children: [
+            {
+                path: "login",
+                element: <Login />,
+            },
+            {
+                path: "register",
+                element: <Register />,
             },
         ],
     },
