@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { defer } from "react-router-dom";
 // import { Menu } from "./pages/Menu/Menu";
 import { Cart } from "./pages/Cart/Cart";
 import { Error } from "./pages/Error/Error";
@@ -48,12 +49,29 @@ const router = createBrowserRouter([
                 errorElement: <>Ошибка</>,
                 // может быть асинхронной
                 // https://67c45d8cc4649b9551b361e2.mockapi.io/menu/?id=1
+                //
+                // используем loader при зависимости от поступающего парметра id=1
+                // и больше не от чего (нет до зависимостей от состояний)
+                //  + надо загрущить все данные
                 loader: async ({ params }) => {
-                    const { data } = await axios.get(
-                        `${PREFIX}/menu/?id=${params.id}`
-                    );
+                    // позволяет обвернуть асинхронные данные
+                    // с v6 работает npm npm i react-router-dom@6.4
+                    // defer - обеспечивает отложенную загрузку с API
+                    // с помощью suspense
+                    return defer({
+                        // .get - возвращаем промис
+                        // .then - возвращам данные
+                        // по итогу возвращаем промисы которые должны быть загружены
+                        // загрузка обеспечиваеться через компонент <Await>
+                        data: await axios
+                            .get(`${PREFIX}/menu/?id=${params.id}`)
+                            .then((data) => data),
+                    });
+                    // const { data } = await axios.get(
+                    //     `${PREFIX}/menu/?id=${params.id}`
+                    // );
                     // mockapi.io - возвращает массивом [{...}] = избавляемся от []
-                    return data[0];
+                    // return data[0];
                 },
             },
         ],
