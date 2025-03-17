@@ -39,3 +39,9 @@
     text-decoration: none;
     color: var(--primary-color);
 }
+
+.error {
+    background: rgba(255, 0, 0, 0.192);
+    color: #000;
+    padding: 20px;
+}
