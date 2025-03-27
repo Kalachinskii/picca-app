@@ -15,6 +15,8 @@ import { AuthLayout } from "./layout/Layout/Auth/AuthLayout.tsx";
 import { Login } from "./pages/Login/Login.tsx";
 import { Register } from "./pages/Register/Register.tsx";
 import { RequireAuth } from "./helpers/RequireAuth.tsx";
+import { Provider } from "react-redux";
+import { store } from "./store/store.ts";
 
 // ЛИНИВАЯ ЗАГРУЗКА
 // при build проекте снижает затратность памяти (меньше вес)
@@ -111,8 +113,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        {/* подключаем роутер */}
-        <RouterProvider router={router} />
+        {/* центрилизованное хранилище на всё приложение*/}
+        <Provider store={store}>
+            {/* подключаем роутер */}
+            <RouterProvider router={router} />
+        </Provider>
         {/* <App /> */}
     </StrictMode>
 );
