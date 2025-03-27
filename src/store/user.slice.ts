@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // что хранить
 export interface UserState {
@@ -11,11 +11,13 @@ const initialState: UserState = {
 
 export const userSlice = createSlice({
     name: "user",
+    // начальное значение
     initialState,
     reducers: {
         // state - пред состояние
-        addJwt: (state) => {
-            state.jwt = "asdasdasd";
+        // action.payload - переданная строка
+        addJwt: (state, action: PayloadAction<string>) => {
+            state.jwt = action.payload;
         },
         logout: (state) => {
             state.jwt = null;
@@ -24,4 +26,6 @@ export const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+// в userActions - будут методы addJwt / logout
+// использование - userActions.addJwt() см. Login
 export const userActions = userSlice.actions;
