@@ -1,4 +1,10 @@
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import {
+    Link,
+    NavLink,
+    Outlet,
+    useLocation,
+    useNavigate,
+} from "react-router-dom";
 import styles from "./Layout.module.css";
 import Button from "../../components/button/Button";
 import { useEffect } from "react";
@@ -7,6 +13,11 @@ import cn from "classnames";
 export function Layout() {
     // показывает где мы находимся
     const location = useLocation();
+    const navigate = useNavigate();
+    const logout = () => {
+        localStorage.removeItem("jwt");
+        navigate("/auth/login");
+    };
 
     useEffect(() => {
         console.log(location);
@@ -55,7 +66,7 @@ export function Layout() {
                         Корзина
                     </NavLink>
                 </div>
-                <Button className={styles.exit}>
+                <Button className={styles.exit} onClick={logout}>
                     <img src="/exit-icon.svg" alt="иконка выхода" />
                     Выход
                 </Button>

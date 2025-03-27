@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import Heading from "../../components/Heading/Heading";
 import Input from "../../components/Input/Input";
@@ -6,6 +6,7 @@ import styles from "./Login.module.css";
 import { FormEvent, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { PREFIX } from "../../helpers/API";
+import { LoginResponse } from "../../interface/auth.interface";
 
 export type LoginForm = {
     email: {
@@ -18,6 +19,8 @@ export type LoginForm = {
 
 export function Login() {
     const [error, setError] = useState<string | null>();
+    //
+    const navigate = useNavigate();
 
     const submit = async (event: FormEvent) => {
         event.preventDefault();
@@ -35,13 +38,19 @@ export function Login() {
         try {
             // ___________________________________________________
             // запрос напрвлен не по адресу - сзделать API
-            const { data } = await axios.post(`${PREFIX}/auth/login`, {
-                email,
-                password,
-            });
+            // реализовываем интерфейс через джинерик
+            const { data } = await axios.post<LoginResponse>(
+                `${PREFIX}/auth/login`,
+                {
+                    email,
+                    password,
+                }
+            );
             //____________________________________________________
             // data - должен получить access_token
             console.log(data);
+            localStorage.setItem("jwt", JSON.stringify(data));
+            navigate("/");
         } catch (error) {
             if (error instanceof AxiosError) {
                 console.error(error.response);
