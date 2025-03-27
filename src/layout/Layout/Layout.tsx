@@ -9,13 +9,19 @@ import styles from "./Layout.module.css";
 import Button from "../../components/button/Button";
 import { useEffect } from "react";
 import cn from "classnames";
+import { useDispatch } from "react-redux";
+import { AppDispath } from "../../store/store";
+import { userActions } from "../../store/user.slice";
 
 export function Layout() {
     // показывает где мы находимся
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispath>();
+
     const logout = () => {
-        localStorage.removeItem("jwt");
+        // localStorage.removeItem("jwt");
+        dispatch(userActions.logout());
         navigate("/auth/login");
     };
 
