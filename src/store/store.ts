@@ -1,5 +1,6 @@
 // корневое централизованное хранилище
 import { configureStore } from "@reduxjs/toolkit";
+import userSlice from "./user.slice";
 // Эта функция упрощает процесс создания Redux-хранилища,
 // предоставляя удобные настройки по умолчанию
 // и интеграцию с различными инструментами.
@@ -8,7 +9,9 @@ import { configureStore } from "@reduxjs/toolkit";
 export const store = configureStore({
     // reducer — пустой {} - в хранилище пока нет редьюсеров,
     // которые обрабатывали бы действия и изменяли состояние.
-    reducer: {},
+    reducer: {
+        user: userSlice,
+    },
 });
 
 // на основе текущей структуры редьюсеров позволяет TypeScript
