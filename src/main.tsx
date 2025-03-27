@@ -1,7 +1,7 @@
 import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
+// import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { defer } from "react-router-dom";
 // import { Menu } from "./pages/Menu/Menu";
@@ -14,6 +14,7 @@ import { PREFIX } from "./helpers/API.ts";
 import { AuthLayout } from "./layout/Layout/Auth/AuthLayout.tsx";
 import { Login } from "./pages/Login/Login.tsx";
 import { Register } from "./pages/Register/Register.tsx";
+import { RequireAuth } from "./helpers/RequireAuth.tsx";
 
 // ЛИНИВАЯ ЗАГРУЗКА
 // при build проекте снижает затратность памяти (меньше вес)
@@ -27,7 +28,13 @@ const Menu = lazy(() => import("./pages/Menu/Menu"));
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout />,
+        element: (
+            // проверка на авторизацию
+            // куда не зайди будет перебрасывать на авторизацию
+            <RequireAuth>
+                <Layout />
+            </RequireAuth>
+        ),
         children: [
             {
                 path: "/",
