@@ -1,6 +1,7 @@
 // корневое централизованное хранилище
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "./user.slice";
+import userSlice, { JWT_PERSISTENT_STATE } from "./user.slice";
+import { saveState } from "./storage";
 // Эта функция упрощает процесс создания Redux-хранилища,
 // предоставляя удобные настройки по умолчанию
 // и интеграцию с различными инструментами.
@@ -12,6 +13,11 @@ export const store = configureStore({
     reducer: {
         user: userSlice,
     },
+});
+
+// в случае изменения состояния,
+store.subscribe(() => {
+    saveState({ jwt: store.getState().user.jwt }, JWT_PERSISTENT_STATE);
 });
 
 // на основе текущей структуры редьюсеров позволяет TypeScript
